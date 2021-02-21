@@ -2,14 +2,14 @@ class User < ApplicationRecord
   class Entity < Base
     expose :email
     expose :time_zone
-    expose :group_id
-    expose :token
+    expose :group, using: ::Group::ShortEntity
+    expose :token, if: -> (instance, options) { options[:current_user] == instance }
   end
 
   has_secure_password
   has_secure_token
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :time_zone, presence: true, numericality: true
 
   belongs_to :group, optional: true
@@ -21,6 +21,11 @@ class User < ApplicationRecord
   def authenticate(password)
     return unless super
     regenerate_token
+  end
+
+  def logout!
+    self.token = nil
+    save!
   end
 
   private

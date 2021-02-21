@@ -12,8 +12,11 @@ module API
         end
 
         def current_user
-          token = params[:token]
-          token.presence && User.find_by(token: token)
+          @current_user ||=
+            begin
+              token = params[:token]
+              token.presence && User.find_by(token: token)
+            end
         end
 
         def authorize!(*args)
@@ -23,11 +26,13 @@ module API
       end
 
       before do
-        raise CanCan::AccessDenied unless verified_request?
+        # it is unnecessary to check it against CSRF attack because we pass token as a parameter, not in headers
+        # raise CanCan::AccessDenied unless verified_request?
       end
 
       before do
-        Time.zone = current_user.time_zone
+        next unless current_user.present?
+        Time.zone = current_user&.time_zone
       end
 
       after do
@@ -38,6 +43,8 @@ module API
       format :json
 
       mount API::V1::Ping
+      mount API::V1::Users
+      mount API::V1::Groups
     end
   end
 end
