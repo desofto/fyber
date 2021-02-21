@@ -26,6 +26,14 @@ module API
         raise CanCan::AccessDenied unless verified_request?
       end
 
+      before do
+        Time.zone = current_user.time_zone
+      end
+
+      after do
+        Time.zone = Rails.configuration.time_zone
+      end
+
       version 'v1', using: :path
       format :json
 

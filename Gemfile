@@ -10,6 +10,8 @@ gem 'bootsnap'
 
 gem 'cancancan'
 
+gem 'bcrypt', '~> 3.1.7'
+
 gem 'grape'
 gem 'grape-cancan'
 gem 'grape-entity'
