@@ -17,14 +17,16 @@ describe Message do
       end
 
       describe 'valid' do
+        let(:user) { User.create!(email: 'qwe2@qwe.com', password: 'qwe', time_zone: 1, group: ::Group.create!(name: 'qwe')) }
+
         it 'if user_id is present' do
-          message = Message.new(text: 'qwe', sender_id: 1, user_id: 1)
+          message = Message.new(text: 'qwe', sender: user, user: user)
 
           expect(message).to be_valid
         end
 
         it 'if group_id is present' do
-          message = Message.new(text: 'qwe', sender_id: 1, group_id: 1)
+          message = Message.new(text: 'qwe', sender: user, group: user.group)
 
           expect(message).to be_valid
         end

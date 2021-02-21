@@ -44,6 +44,7 @@ module API
       mount API::V1::Ping
       mount API::V1::Users
       mount API::V1::Groups
+      mount API::V1::Messages
     end
   end
 end

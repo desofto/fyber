@@ -8,6 +8,9 @@ module Ability
 
       can :index, ::Group
       can :show, ::Group
+
+      can :index, ::Message
+      can :create, ::Message
     end
   end
 end
