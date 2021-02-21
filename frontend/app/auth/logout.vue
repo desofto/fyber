@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <button @click="logout()">
+  <div class="d-flex justify-content-end pt-3 pr-3">
+    <button @click="logout()" class="btn btn-light">
       Logout
     </button>
   </div>

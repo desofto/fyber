@@ -1,58 +1,40 @@
 <template>
-  <div>
-    <div>
-      <div>
-        Email:
-      </div>
-      <div>
-        <input type="email" v-model="email" />
-      </div>
+  <div class="p-4">
+    <div class="form-group mb-3">
+      <label>Email:</label>
+      <input type="email" v-model="email" class="form-control" />
     </div>
 
-    <div>
-      <div>
-        Password:
-      </div>
-      <div>
-        <input type="password" v-model="password" />
-      </div>
+    <div class="form-group mb-3">
+      <label>Password:</label>
+      <input type="password" v-model="password" class="form-control" />
     </div>
 
-    <div>
-      <div>
-        Time zone:
-      </div>
-      <div>
-        <select v-model="timeZone">
-          <option v-for="(title, timeZone) in timeZones" :key="timeZone" :value="timeZone">
-            {{ title }}
-          </option>
-        </select>
-      </div>
+    <div class="form-group mb-3">
+      <label>Time zone:</label>
+      <select v-model="timeZone" class="form-control">
+        <option v-for="(title, timeZone) in timeZones" :key="timeZone" :value="timeZone">
+          {{ title }}
+        </option>
+      </select>
     </div>
 
-    <div>
-      <div>
-        Group:
-      </div>
-      <div>
-        <select v-model="groupId">
-          <option :value="null">
-            no group
-          </option>
-          <option v-for="group in groups" :key="group.id" :value="group.id">
-            {{ group.name }}
-          </option>
-        </select>
-      </div>
+    <div class="form-group mb-3">
+      <label>Group:</label>
+      <select v-model="groupId" class="form-control">
+        <option :value="null">
+          no group
+        </option>
+        <option v-for="group in groups" :key="group.id" :value="group.id">
+          {{ group.name }}
+        </option>
+      </select>
     </div>
 
-    <div>
-      <div>
-        <button @click="signup()">
-          Signup
-        </button>
-      </div>
+    <div class="form-group">
+      <button @click="signup()" class="btn btn-primary">
+        Signup
+      </button>
     </div>
   </div>
 </template>

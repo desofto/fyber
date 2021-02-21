@@ -1,6 +1,6 @@
 <template>
   <div>
-    <List />
+    <List class="mb-4" />
     <New />
   </div>
 </template>

@@ -1,29 +1,19 @@
 <template>
-  <div>
-    <div>
-      <div>
-        Email:
-      </div>
-      <div>
-        <input type="email" v-model="email" />
-      </div>
+  <div class="p-4">
+    <div class="form-group mb-3">
+      <label>Email:</label>
+      <input type="email" v-model="email" class="form-control" />
     </div>
 
-    <div>
-      <div>
-        Password:
-      </div>
-      <div>
-        <input type="password" v-model="password" />
-      </div>
+    <div class="form-group mb-3">
+      <label>Password:</label>
+      <input type="password" v-model="password" class="form-control" />
     </div>
 
-    <div>
-      <div>
-        <button @click="login()">
-          Login
-        </button>
-      </div>
+    <div class="form-group">
+      <button @click="login()" class="btn btn-primary">
+        Login
+      </button>
     </div>
   </div>
 </template>

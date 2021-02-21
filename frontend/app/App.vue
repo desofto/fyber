@@ -1,13 +1,24 @@
 <template>
   <div>
-    <div v-if="!currentUser.token">
-      <Login />
-      <Signup />
+    <div v-if="currentUser.token">
+      <div>
+        <Logout  />
+      </div>
+
+      <Messages />
     </div>
 
-    <Logout v-else />
+    <div v-else>
+      <div class="d-flex">
+        <div class="d-flex" style="width: 50%;">
+          <Login class="m-auto" />
+        </div>
 
-    <Messages />
+        <div class="d-flex" style="width: 50%;">
+          <Signup class="m-auto" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

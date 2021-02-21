@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div>
-      <textarea v-model="text" />
+  <div class="p-3 bg-light">
+    <div class="form-group mb-3">
+      <textarea v-model="text" class="form-control" />
     </div>
 
-    <div>
-      <select v-model="userId">
+    <div class="form-group mb-3">
+      <select v-model="userId" class="form-control" style="max-width: 20em;">
         <option :value="null">
           no user selected
         </option>
@@ -16,8 +16,8 @@
       </select>
     </div>
 
-    <div>
-      <select v-model="groupId">
+    <div class="form-group mb-3">
+      <select v-model="groupId" class="form-control" style="max-width: 20em;">
         <option :value="null">
           no group selected
         </option>
@@ -28,8 +28,8 @@
       </select>
     </div>
 
-    <div>
-      <button @click="post()">
+    <div class="form-group">
+      <button @click="post()" class="btn btn-primary">
         Post
       </button>
     </div>
@@ -70,6 +70,7 @@
           group_id: this.groupId
         })
         .then(() => {
+          this.text = ''
           alert('sent')
         }, response => {
           alert(response.body)
