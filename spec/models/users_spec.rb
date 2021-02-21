@@ -9,4 +9,12 @@ describe User do
     it { expect(subject).to validate_numericality_of(:time_zone) }
   end
 
+  it '#authenticate' do
+    user = User.create(email: 'qwe@qwe.com', password: 'QWEqwe123', time_zone: 1)
+
+    expect(user.authenticate('qwe')).to be_falsey
+    expect(user.token).to be_blank
+    expect(user.authenticate('QWEqwe123')).to be_truthy
+    expect(user.token).not_to be_blank
+  end
 end
