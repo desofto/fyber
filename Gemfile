@@ -8,6 +8,8 @@ gem 'sqlite3'
 
 gem 'bootsnap'
 
+gem 'cancancan'
+
 gem 'grape'
 gem 'grape-cancan'
 gem 'grape-entity'

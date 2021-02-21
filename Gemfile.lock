@@ -203,6 +203,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   byebug
+  cancancan
   database_cleaner
   grape
   grape-cancan
