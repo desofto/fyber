@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
-
 gem 'rails', '~> 5.2.4'
-gem 'sqlite3'
+gem 'pg'
 
 gem 'bootsnap'
 
@@ -17,6 +15,7 @@ gem 'grape-cancan'
 gem 'grape-entity'
 
 group :development, :test do
+  gem 'sqlite'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
 end

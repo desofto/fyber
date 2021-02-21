@@ -122,6 +122,7 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    pg (1.2.3)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -189,7 +190,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
+    sqlite (1.0.2)
     thor (1.1.0)
     thread_safe (0.3.6)
     tzinfo (1.2.9)
@@ -211,15 +212,13 @@ DEPENDENCIES
   grape-cancan
   grape-entity
   listen (>= 3.0.5, < 3.2)
+  pg
   pry-rails
   rails (~> 5.2.4)
   rspec-rails
   shoulda-matchers
-  sqlite3
+  sqlite
   tzinfo-data
-
-RUBY VERSION
-   ruby 2.5.0p0
 
 BUNDLED WITH
    1.16.1
