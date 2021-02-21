@@ -51,14 +51,14 @@
       .then(response => {
         this.groups = response.body
       }, response => {
-        alert(response.body)
+        alert(response.body.errors)
       })
 
       this.$http.get(`/api/v1/users?token=${this.$globals.currentUser.token}`)
       .then(response => {
         this.users = response.body
       }, response => {
-        alert(response.body)
+        alert(response.body.errors)
       })
 },
 
@@ -73,7 +73,7 @@
           this.text = ''
           alert('sent')
         }, response => {
-          alert(response.body)
+          alert(response.body.errors)
         })
       }
     }

@@ -10,5 +10,9 @@ class ApplicationRecord < ActiveRecord::Base
       expose :created_at, format_with: :iso_timestamp
       expose :updated_at, format_with: :iso_timestamp
     end
+
+    expose :created_at_formatted do |entity|
+      entity.created_at.strftime('%Y-%m-%d %H:%M:%S')
+    end
   end
 end

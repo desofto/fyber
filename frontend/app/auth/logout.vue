@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-end pt-3 pr-3">
+  <div class="d-flex justify-content-end">
     <button @click="logout()" class="btn btn-light">
       Logout
     </button>
@@ -18,7 +18,7 @@
           this.$globals.currentUser.token = ''
           localStorage.setItem('current-user-token', '')
         }, response => {
-          alert(response.body)
+          alert(response.body.errors)
         })
       }
     }

@@ -36,6 +36,28 @@ module API
           present user, current_user: user
         end
 
+        desc 'Current user detaile'
+        get :me do
+          authorize! :show, current_user
+
+          present current_user
+        end
+
+        desc 'Update current user detaile'
+        params do
+          optional :email, type: String
+          optional :password, type: String
+          optional :time_zone, type: Integer
+          optional :group_id, type: Integer
+        end
+        post :me do
+          authorize! :update, current_user
+
+          current_user.update(declared_params)
+
+          present current_user
+        end
+
         desc 'Logout user'
         post :logout do
           current_user&.logout!

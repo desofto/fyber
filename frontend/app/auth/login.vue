@@ -35,7 +35,7 @@
           this.$globals.currentUser.token = response.body.token
           localStorage.setItem('current-user-token', response.body.token)
         }, response => {
-          alert(response.body)
+          alert(response.body.errors)
         })
       }
     }

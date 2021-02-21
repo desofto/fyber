@@ -10,8 +10,12 @@
           {{ message.sender.email }}
         </div>
 
-        <div>
+        <div class="mr-3" title="In browser Time zone">
           {{ message.created_at | date('%Y-%m-%d %H:%M:%S') }}
+        </div>
+
+        <div title="In selected Time zone">
+          {{ message.created_at_formatted }}
         </div>
       </div>
     </div>
@@ -29,7 +33,7 @@
       .then(response => {
         this.messages = response.body
       }, response => {
-        alert(response.body)
+        alert(response.body.errors)
       })
     },
   }

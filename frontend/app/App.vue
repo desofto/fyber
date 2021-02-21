@@ -1,31 +1,12 @@
 <template>
   <div>
-    <div v-if="currentUser.token">
-      <div>
-        <Logout  />
-      </div>
-
-      <Messages />
-    </div>
-
-    <div v-else>
-      <div class="d-flex">
-        <div class="d-flex" style="width: 50%;">
-          <Login class="m-auto" />
-        </div>
-
-        <div class="d-flex" style="width: 50%;">
-          <Signup class="m-auto" />
-        </div>
-      </div>
-    </div>
+    <Auth />
+    <Messages v-if="currentUser.token" />
   </div>
 </template>
 
 <script>
-  import Login from './auth/login'
-  import Signup from './auth/signup'
-  import Logout from './auth/logout'
+  import Auth from './auth/'
   import Messages from './messages/'
 
   export default {
@@ -39,9 +20,7 @@
     },
 
     components: {
-      Login,
-      Signup,
-      Logout,
+      Auth,
       Messages,
     }
   }
