@@ -25,6 +25,7 @@ module API
           requires :password, type: String
           requires :time_zone, type: Integer
           optional :group_id, type: Integer
+          optional :group_name, type: String
         end
         post :signup do
           user = ::User.create!(
@@ -33,6 +34,12 @@ module API
             time_zone: params[:time_zone],
             group_id: params[:group_id]
           )
+
+          if params[:group_name]
+            group = ::Group.find_by(name: params[:group_name]) || ::Group.create!(name: params[:group_name])
+            user.update!(group: group)
+          end
+
           present user, current_user: user
         end
 

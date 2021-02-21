@@ -31,6 +31,11 @@
       </select>
     </div>
 
+    <div class="form-group mb-3" v-if="!groupId">
+      <label>Group:</label>
+      <input type="text" v-model="groupName" class="form-control" />
+    </div>
+
     <div class="form-group">
       <button @click="signup()" class="btn btn-primary">
         Signup
@@ -74,6 +79,7 @@
       password: '',
       timeZone: 0,
       groupId: null,
+      groupName: null,
       groups: [],
 
       timeZones: TimeZones
@@ -94,7 +100,8 @@
           email: this.email,
           password: this.password,
           time_zone: this.timeZone,
-          group_id: this.groupId
+          group_id: this.groupId,
+          group_name: this.groupName
         })
         .then(() => {
           alert('Registered. Please login now.')
