@@ -12,4 +12,6 @@ class Message < ApplicationRecord
 
   validates :group_id, presence: true, if: -> { user_id.blank? }
   validates :user_id, presence: true, if: -> { group_id.blank? }
+
+  belongs_to :user
 end
