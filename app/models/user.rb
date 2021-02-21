@@ -7,4 +7,7 @@ class User < ApplicationRecord
   end
 
   has_secure_password
+
+  validates :email, presence: true
+  validates :time_zone, presence: true, numericality: true
 end
