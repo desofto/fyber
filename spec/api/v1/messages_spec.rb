@@ -68,4 +68,34 @@ describe 'API::V1::Messages', type: :controller do
       expect(msg.sender_id).to eq signedin_user.id
     end
   end
+
+  it 'adjust datetime fields to user\'s timezone automatically' do
+    user1 = ::User.create!(email: 'qwe1@qwe.com', password: 'qwe', time_zone: 2)
+    user2 = ::User.create!(email: 'qwe2@qwe.com', password: 'qwe', time_zone: 5)
+    user3 = ::User.create!(email: 'qwe3@qwe.com', password: 'qwe', time_zone: -5)
+
+    user1.authenticate('qwe')
+
+    post '/api/v1/messages', params: { token: user1.token, text: 'qwe', user_id: user2.id }
+    expect(response).to have_http_status 201
+
+    post '/api/v1/messages', params: { token: user1.token, text: 'qwe', user_id: user3.id }
+    expect(response).to have_http_status 201
+
+    user2.authenticate('qwe')
+
+    get '/api/v1/messages', params: { token: user2.token }
+
+    expect(response).to have_http_status 200
+    expect(json_response[0][:created_at][-6..-1]).to eq '+05:00'
+    expect(Time.parse(json_response[0][:created_at]).utc).to be_within(5.seconds).of(Time.zone.now.utc)
+
+    user3.authenticate('qwe')
+
+    get '/api/v1/messages', params: { token: user3.token }
+
+    expect(response).to have_http_status 200
+    expect(json_response[0][:created_at][-6..-1]).to eq '-05:00'
+    expect(Time.parse(json_response[0][:created_at]).utc).to be_within(5.seconds).of(Time.zone.now.utc)
+  end
 end

@@ -30,8 +30,11 @@ module API
       end
 
       before do
-        next unless current_user.present?
-        Time.zone = current_user&.time_zone
+        if current_user.present?
+          Time.zone = current_user&.time_zone
+        else
+          Time.zone = Rails.configuration.time_zone
+        end
       end
 
       after do

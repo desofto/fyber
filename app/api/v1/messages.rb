@@ -6,7 +6,9 @@ module API
         get do
           authorize! :index, ::Message
 
-          present ::Message.where('messages.user_id = :user_id OR group_id = :group_id', user_id: current_user.id, group_id: current_user.group_id)
+          messages = ::Message.where('messages.user_id = :user_id OR group_id = :group_id', user_id: current_user.id, group_id: current_user.group_id)
+
+          (present messages).to_json
         end
 
         desc 'Post a message'
