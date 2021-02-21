@@ -8,6 +8,10 @@ gem 'sqlite3'
 
 gem 'bootsnap'
 
+gem 'grape'
+gem 'grape-cancan'
+gem 'grape-entity'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
