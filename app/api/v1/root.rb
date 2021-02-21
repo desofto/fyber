@@ -20,7 +20,6 @@ module API
         end
 
         def authorize!(*args)
-          raise CanCan::AccessDenied unless current_user.present?
           ::Ability::Factory.build_ability_for(current_user).authorize!(*args)
         end
       end
