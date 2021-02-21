@@ -8,6 +8,8 @@ module API
 
           messages = ::Message.where('messages.user_id = :user_id OR group_id = :group_id', user_id: current_user.id, group_id: current_user.group_id)
 
+          messages = messages.reorder(created_at: :desc).limit(100)
+
           (present messages).to_json
         end
 

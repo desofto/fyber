@@ -2,7 +2,16 @@ class Message < ApplicationRecord
   class Entity < Base
     expose :text
 
-    expose :sender_id
+    expose :sender do
+      expose :id do |message|
+        message.sender.id
+      end
+
+      expose :email do |message|
+        message.sender.email
+      end
+    end
+
     expose :group_id
     expose :user_id
   end
